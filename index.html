@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="css/base.css"> 
     <link rel="stylesheet" href="css/layout.css"> 
     <link rel="stylesheet" href="css/modules.css"> 
+    <script id="horn-template" type="text/x-handlebars-template">
+      <section>
+        <h2>{{title}}</h2>
+        <p>{{image-url}}</p>
+        <p>{{description}}</p>
+      </section>
+    </script>
   </head>
   <body>
     <header>
@@ -20,18 +27,18 @@
       </section>
     </header>
     <main>
-      <section id="horn-template">
+      <section id="horns"></section>
+      <!-- <section id="horn-template">
         <h2></h2>
         <img src="" alt="">
         <p></p>
-      </section>
+      </section> -->
     </main>
     <footer>
       &copy; 2018 Code Fellows
     </footer>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
   </body>
 </html>
