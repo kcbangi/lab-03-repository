@@ -16,36 +16,52 @@ function Horn(horn) {
 
 // creates array with all objects from the constructor function
 
-Horn.allHorns = [];
 
 // declares function that clones the empty div elements, populates it with properties from each object, and deletes the emplty div. 
 
-Horn.prototype.render = function() {
-  $('main').append('<div class="clone"></div>');
-  let $hornClone = $('div[class="clone"]');
-  $hornClone.html($('#horn-template').html());
-  $hornClone.find('h2').text(this.title);
-  $hornClone.find('img').attr('src', this.image_url);
-  $hornClone.find('p').text(this.description);
-  $hornClone.attr('class', this.keyword);
-  $hornClone.removeClass('clone');
+// Horn.prototype.render = function() {
+//   $('main').append('<div class="clone"></div>');
+//   let $hornClone = $('div[class="clone"]');
+//   $hornClone.html($('#horn-template').html());
+//   $hornClone.find('h2').text(this.title);
+//   $hornClone.find('img').attr('src', this.image_url);
+//   $hornClone.find('p').text(this.description);
+//   $hornClone.attr('class', this.keyword);
+//   $hornClone.removeClass('clone');
+// };
+
+Horn.prototype.toHtml = function () {
+  let $template = $('#horns-template').html();
+  let compiledTemplate = Handlebars.compile($template);
+  return compiledTemplate(this);
 };
+
 
 
 // creates a promise that once the json file is read, data from each object will be populated into the new div template.
 
 Horn.readJson = () => {
+  
+Horn.allHorns = [];
   $.get('data/page-1.json', 'json')
     .then(data => {
+      console.log(data);
       data.forEach(item => {
+        console.log('This is item', item);
         Horn.allHorns.push(new Horn(item));
       });
 
       // .then(Horn.loadHorns)
 
-      Horn.allHorns.forEach (horn => {
-        $('main').append(horn.render());
+      console.log(Horn.allHorns);
+
+      Horn.allHorns.forEach(hornvar => {
+        $('horns').append(hornvar.toHtml());
       });
+
+      // Horn.allHorns.forEach (horn => {
+      //   $('main').append(horn.render());
+      // });
     })
     .then(Horn.populateFilter)
     .then(Horn.handleFilter);
