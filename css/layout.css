@@ -1,4 +1,4 @@
-@media (min-width: 481px) and (max-width: 969) {
+/* @media (min-width: 481px) and (max-width: 969) {
     body {
         width: 768px;
     }
@@ -12,4 +12,23 @@
     }
 
 
+} */
+
+
+h1 {
+    color: yellow;
+
+}
+@media (max-width:430px) and (max-width:768px) {
+
+    h1 {
+        color: red;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+
+    h1 {
+        color: blue;
+    }
 }
