@@ -1,0 +1,15 @@
+@media (min-width: 481px) and (max-width: 969) {
+    body {
+        width: 768px;
+    }
+    
+
+}
+
+@media (min-width: 960px) {
+    body {
+        width: 960px;
+    }
+
+
+}

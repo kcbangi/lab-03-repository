@@ -1,0 +1,51 @@
+body {
+
+    /* width: 960px; */
+
+    text-align: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+h1 {
+
+    font-size: 50px;
+
+}
+
+
+
+header {
+
+    margin: 50px 0;
+
+    background: rgba(255, 255, 255, 0.411);
+
+    border: 30px 30px;
+
+}
+
+img {
+
+    width: 450px;
+
+    float: left;
+
+    margin: 20px 30px;
+
+    height: 450px;
+
+    /* border: 3px black solid; */
+
+}
+
+
+
+footer {
+
+    display: none;
+
+}
