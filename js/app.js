@@ -115,6 +115,10 @@ Horn.handleFilter = () => {
   });
 };
 
+//creates pagination
+
+$("ul.pagination").quickPagination({pagerLocation:"both"});
+
 //Loads the json data
 
 $(() => Horn.readJson());
