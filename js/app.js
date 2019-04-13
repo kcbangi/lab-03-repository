@@ -80,7 +80,7 @@ Horn.populateFilter = () => {
   $('option').not(':first').remove();
   Horn.allHorns.forEach(horn => {
     if (!filterKeywords.includes(horn.keyword))
-    filterKeywords.push(horn.keyword);
+      filterKeywords.push(horn.keyword);
   });
 
   filterKeywords.sort();
