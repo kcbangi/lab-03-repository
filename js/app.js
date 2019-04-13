@@ -1,9 +1,5 @@
 'use strict';
 
-// Some of this code was from our class code review,
-// but I wanted to get at least enough up and running that we could work on handlebars and flex box tonight.
-// It was typed out by hand with care taken to work on understanding as I went.
-
 // creates constructor function
 
 function Horn(horn) {
@@ -16,6 +12,7 @@ function Horn(horn) {
 
 // creates array with all objects from the constructor function
 
+Horn.allHorns = [];
 
 // declares function that clones the empty div elements, populates it with properties from each object, and deletes the emplty div. 
 
@@ -37,12 +34,9 @@ Horn.prototype.toHtml = function () {
 };
 
 
-
 // creates a promise that once the json file is read, data from each object will be populated into the new div template.
 
 Horn.readJson = () => {
-  
-Horn.allHorns = [];
   $.get('data/page-1.json', 'json')
     .then(data => {
       console.log(data);
