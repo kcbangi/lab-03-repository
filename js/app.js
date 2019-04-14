@@ -1,5 +1,7 @@
 'use strict';
 
+// I need to make sure each <section> has a class of its keyword.
+
 // creates constructor function
 
 function Horn(horn) {
@@ -21,13 +23,6 @@ Horn.prototype.render = function() {
   let x = this.toHtml(context);
   console.log(x);
   $('main').append(x);
-  // let $hornClone = $('div[class="clone"]');
-  // $hornClone.html($('#horn-template').html());
-  // $hornClone.find('h2').text(this.title);
-  // $hornClone.find('img').attr('src', this.image_url);
-  // $hornClone.find('p').text(this.description);
-  // $hornClone.attr('class', this.keyword);
-  // $hornClone.removeClass('clone');
 };
 
 Horn.prototype.toHtml = function () {
@@ -51,20 +46,10 @@ Horn.readJson = () => {
       Horn.allHorns.forEach(hornvar => {
         $('main').append(hornvar.render());
       });
-
-      // Horn.allHorns.forEach (horn => {
-      //   $('main').append(horn.render());
-      // });
     })
     .then(Horn.populateFilter)
     .then(Horn.handleFilter);
 };
-
-// creates function that iterates through the horns array and renders each object to the page.
-
-// Horn.loadHorns = () => {
-//   Horn.allHorns.forEach(horn => horn.render())
-// }
 
 // clears all images from page and adds the ones chosen in the filter back in, ready to be rendered
 
@@ -91,18 +76,18 @@ Horn.handleFilter = () => {
   $('select').on('change',function () {
     let $selected = $(this).val();
     if ($selected !== 'default') {
-      $('div').hide();
+      $('section').hide();
 
       Horn.allHorns.forEach(horn =>{
         if ($selected === horn.keyword) {
-          $(`div[class="${$selected}"`).addClass
+          $(`section[class="${$selected}"`).addClass
           ('filtered').fadeIn();
         }
       });
 
       $(`option[value=${$selected}]`).fadeIn();
     } else {
-      $('div').removeClass('filtered').fadeIn();
+      $('section').removeClass('filtered').fadeIn();
       $(`option[value=${$selected}]`).fadeIn();
     }
   });
@@ -115,9 +100,3 @@ Horn.handleFilter = () => {
 //Loads the json data
 
 $(() => Horn.readJson());
-
-// $('select[name="animals"]').on('change', function () {
-//   let $selection = $(this).val();
-//   $('data/page-1.json').hide()
-//   $(`data/page-1.json[keyword="${selection}"]`).show()
-// })
