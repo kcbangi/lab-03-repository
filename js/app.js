@@ -5,7 +5,7 @@
 function Horn(horn) {
   this.image_url = horn.image_url;
   this.title = horn.title;
-  this.description = horn.decsription;
+  this.description = horn.description;
   this.keyword = horn.keyword;
   this.horns = horn.horns;
 }
@@ -16,20 +16,25 @@ Horn.allHorns = [];
 
 // declares function that clones the empty div elements, populates it with properties from each object, and deletes the emplty div. 
 
-// Horn.prototype.render = function() {
-//   $('main').append('<div class="clone"></div>');
-//   let $hornClone = $('div[class="clone"]');
-//   $hornClone.html($('#horn-template').html());
-//   $hornClone.find('h2').text(this.title);
-//   $hornClone.find('img').attr('src', this.image_url);
-//   $hornClone.find('p').text(this.description);
-//   $hornClone.attr('class', this.keyword);
-//   $hornClone.removeClass('clone');
-// };
+Horn.prototype.render = function() {
+  let context  = {title: this.title, image_url: this.image_url, description: this.description};
+  let x = this.toHtml(context);
+  console.log(x);
+  $('main').append(x);
+  // let $hornClone = $('div[class="clone"]');
+  // $hornClone.html($('#horn-template').html());
+  // $hornClone.find('h2').text(this.title);
+  // $hornClone.find('img').attr('src', this.image_url);
+  // $hornClone.find('p').text(this.description);
+  // $hornClone.attr('class', this.keyword);
+  // $hornClone.removeClass('clone');
+};
 
 Horn.prototype.toHtml = function () {
-  let $template = $('#horns-template').html();
+  console.log('running html method');
+  let $template = $('#horn-template').html();
   let compiledTemplate = Handlebars.compile($template);
+  console.log(compiledTemplate);
   return compiledTemplate(this);
 };
 
@@ -39,18 +44,12 @@ Horn.prototype.toHtml = function () {
 Horn.readJson = () => {
   $.get('data/page-1.json', 'json')
     .then(data => {
-      console.log(data);
       data.forEach(item => {
-        console.log('This is item', item);
         Horn.allHorns.push(new Horn(item));
       });
 
-      // .then(Horn.loadHorns)
-
-      console.log(Horn.allHorns);
-
       Horn.allHorns.forEach(hornvar => {
-        $('horns').append(hornvar.toHtml());
+        $('main').append(hornvar.render());
       });
 
       // Horn.allHorns.forEach (horn => {
@@ -111,7 +110,7 @@ Horn.handleFilter = () => {
 
 //creates pagination
 
-$("ul.pagination").quickPagination({pagerLocation:"both"});
+// $("ul.pagination").quickPagination({pagerLocation:"both"});
 
 //Loads the json data
 
